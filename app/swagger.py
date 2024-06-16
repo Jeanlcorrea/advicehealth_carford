@@ -4,29 +4,24 @@ def swagger():
     swag = {
         "swagger": "2.0",
         "info": {
-            "title": "CarFord Management API",
+            "title": "Car Management API",
             "version": "1.0.0",
-            "description": "API for managing cars and car owners by Jean Corrêa",
-            "contact": {
-              "email": "jeanlucorrea@gmail.com"
-            },
+            "description": "API for managing cars and car owners"
         },
         "tags": [
             {
-                "name": "Cars",
-                "description": "Everything about Cars",
+                "name": "owners",
+                "description": "Operations related to car owners"
             },
             {
-                "name": "Owners",
-                "description": "Everything about Car Owners"
+                "name": "cars",
+                "description": "Operations related to cars"
             }
         ],
         "paths": {
             "/cars": {
                 "post": {
-                    "tags": [
-                        "Cars"
-                    ],
+                    "tags": ["cars"],
                     "summary": "Add a new car",
                     "parameters": [
                         {
@@ -89,11 +84,60 @@ def swagger():
                     }
                 }
             },
+            "/cars/{car_id}": {
+                "delete": {
+                    "tags": ["cars"],
+                    "summary": "Delete a car",
+                    "parameters": [
+                        {
+                            "name": "car_id",
+                            "in": "path",
+                            "required": True,
+                            "type": "integer"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Car deleted successfully",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Car deleted successfully"
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "Car not found",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Car not found"
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "/car_owners": {
                 "post": {
-                    "tags": [
-                        "Owners"
-                    ],
+                    "tags": ["owners"],
                     "summary": "Add a new car owner",
                     "parameters": [
                         {
@@ -144,9 +188,7 @@ def swagger():
                     }
                 },
                 "get": {
-                    "tags": [
-                        "Owners"
-                    ],
+                    "tags": ["owners"],
                     "summary": "Get all car owners",
                     "responses": {
                         "200": {
@@ -186,9 +228,7 @@ def swagger():
             },
             "/car_owners/{owner_id}/cars": {
                 "get": {
-                    "tags": [
-                        "Owners"
-                    ],
+                    "tags": ["owners"],
                     "summary": "Get cars owned by a specific owner",
                     "parameters": [
                         {
@@ -224,6 +264,57 @@ def swagger():
                         },
                         "400": {
                             "description": "Bad request",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/car_owners/{owner_id}": {
+                "delete": {
+                    "tags": ["owners"],
+                    "summary": "Delete a car owner and their associated cars",
+                    "parameters": [
+                        {
+                            "name": "owner_id",
+                            "in": "path",
+                            "required": True,
+                            "type": "integer"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Car owner and associated cars deleted successfully",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Car owner and associated cars deleted successfully"
+                                    }
+                                }
+                            }
+                        },
+                        "404": {
+                            "description": "Owner not found",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Owner not found"
+                                    }
+                                }
+                            }
+                        },
+                        "500": {
+                            "description": "Internal server error",
                             "schema": {
                                 "type": "object",
                                 "properties": {
