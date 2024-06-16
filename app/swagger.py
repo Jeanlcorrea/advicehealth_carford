@@ -6,22 +6,22 @@ def swagger():
         "info": {
             "title": "Car Management API",
             "version": "1.0.0",
-            "description": "API for managing cars and car owners"
+            "description": "API for managing cars and car owners by Jean Corrêa"
         },
         "tags": [
             {
-                "name": "owners",
+                "name": "Owners",
                 "description": "Operations related to car owners"
             },
             {
-                "name": "cars",
+                "name": "Cars",
                 "description": "Operations related to cars"
             }
         ],
         "paths": {
             "/cars": {
                 "post": {
-                    "tags": ["cars"],
+                    "tags": ["Cars"],
                     "summary": "Add a new car",
                     "parameters": [
                         {
@@ -86,7 +86,7 @@ def swagger():
             },
             "/cars/{car_id}": {
                 "delete": {
-                    "tags": ["cars"],
+                    "tags": ["Cars"],
                     "summary": "Delete a car",
                     "parameters": [
                         {
@@ -135,9 +135,9 @@ def swagger():
                     }
                 }
             },
-            "/car_owners": {
+            "/owners": {
                 "post": {
-                    "tags": ["owners"],
+                    "tags": ["Owners"],
                     "summary": "Add a new car owner",
                     "parameters": [
                         {
@@ -188,7 +188,7 @@ def swagger():
                     }
                 },
                 "get": {
-                    "tags": ["owners"],
+                    "tags": ["Owners"],
                     "summary": "Get all car owners",
                     "responses": {
                         "200": {
@@ -226,9 +226,9 @@ def swagger():
                     }
                 }
             },
-            "/car_owners/{owner_id}/cars": {
+            "/owners/{owner_id}/cars": {
                 "get": {
-                    "tags": ["owners"],
+                    "tags": ["Owners"],
                     "summary": "Get cars owned by a specific owner",
                     "parameters": [
                         {
@@ -276,9 +276,9 @@ def swagger():
                     }
                 }
             },
-            "/car_owners/{owner_id}": {
+            "/owners/{owner_id}": {
                 "delete": {
-                    "tags": ["owners"],
+                    "tags": ["Owners"],
                     "summary": "Delete a car owner and their associated cars",
                     "parameters": [
                         {

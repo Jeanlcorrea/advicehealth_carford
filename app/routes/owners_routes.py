@@ -9,7 +9,7 @@ class CarOwnerRoutes:
         self.register_routes()
 
     def register_routes(self):
-        @self.bp.route('/car_owners', methods=['POST'])
+        @self.bp.route('/owners', methods=['POST'])
         def add_car_owner():
             data = request.json
             name = data.get('name')
@@ -24,7 +24,7 @@ class CarOwnerRoutes:
                 db.session.rollback()
                 return jsonify(message=str(e)), 500
 
-        @self.bp.route('/car_owners', methods=['GET'])
+        @self.bp.route('/owners', methods=['GET'])
         def get_car_owners():
             try:
                 owners = CarOwner.query.all()
@@ -33,7 +33,7 @@ class CarOwnerRoutes:
             except Exception as e:
                 return jsonify(message=str(e)), 500
 
-        @self.bp.route('/car_owners/<int:owner_id>/cars', methods=['GET'])
+        @self.bp.route('/owners/<int:owner_id>/cars', methods=['GET'])
         def get_cars_by_owner(owner_id):
             try:
                 cars = Car.query.filter_by(owner_id=owner_id).all()
@@ -43,14 +43,13 @@ class CarOwnerRoutes:
             except Exception as e:
                 return jsonify(message=str(e)), 400
 
-        @self.bp.route('/car_owners/<int:owner_id>', methods=['DELETE'])
+        @self.bp.route('/owners/<int:owner_id>', methods=['DELETE'])
         def delete_car_owner(owner_id):
             try:
                 owner = CarOwner.query.get(owner_id)
                 if owner is None:
                     return jsonify(message="Owner not found"), 404
 
-                # Excluir todos os carros associados ao proprietário
                 Car.query.filter_by(owner_id=owner_id).delete()
                 db.session.delete(owner)
                 db.session.commit()

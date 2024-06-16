@@ -16,5 +16,14 @@ remove: stop
         echo "No containers to remove."; \
     fi
 
+# RECREATE DOCKER BUILD
 build: remove
 	docker-compose up --build
+
+.PHONY: up down
+
+containers-up:
+	docker-compose up
+
+containers-down:
+	docker-compose down
