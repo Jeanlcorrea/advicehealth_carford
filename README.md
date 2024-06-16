@@ -82,7 +82,6 @@ The following tools were used to build the project:
 - SQLAlchemy
 - PostgreSQL
 - Docker and Docker Compose
-- Heroku for deploy
 
 ---
 
