@@ -5,7 +5,7 @@
 
 ---
 
-<p align="center"> The AdviceHealth Cartford project is a web application built using Flask and PostgreSQL, 
+<p align="center"> The AdviceHealth Cartord project is a web application built using Flask and PostgreSQL, 
 deployed within Docker containers. It provides a platform for managing CarFord's cars and car owners. </p>
 
 ---
