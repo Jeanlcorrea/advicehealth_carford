@@ -31,6 +31,20 @@ class CarRoutes:
 
             return self.create_and_add_car(color, model, owner_id)
 
+        @self.bp.route('/cars/<int:car_id>', methods=['DELETE'])
+        def delete_car(car_id):
+            car = Car.query.get(car_id)
+            if not car:
+                return jsonify(message='Car not found'), 404
+
+            try:
+                db.session.delete(car)
+                db.session.commit()
+                return jsonify(message='Car deleted successfully'), 200
+            except Exception as e:
+                db.session.rollback()
+                return jsonify(message=str(e)), 500
+
     def get_owner(self, owner_id):
         return CarOwner.query.get(owner_id)
 
