@@ -68,6 +68,8 @@ To set up and run this project, make sure you have the following prerequisites i
 
 ### DOCUMENTATION:
 
+localhost:5000/api-docs to use a Swagger API Documentation
+
 <img src='./readme_assets/local_swagger.png'>
 
 ---
