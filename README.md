@@ -80,6 +80,7 @@ The following tools were used to build the project:
 - Python
 - Flask
 - SQLAlchemy
+- Swagger
 - PostgreSQL
 - Docker and Docker Compose
 
