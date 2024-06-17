@@ -1,4 +1,4 @@
-.PHONY: stop remove build
+.PHONY: stop remove rebuild
 
 stop:
     @containers=$$(docker ps -aq); \
@@ -17,10 +17,13 @@ remove: stop
     fi
 
 # RECREATE DOCKER BUILD
-build: remove
+rebuild: remove
 	docker-compose up --build
 
-.PHONY: up down
+.PHONY: up down build
+
+build:
+	docker-compose up --build
 
 containers-up:
 	docker-compose up
